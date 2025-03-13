@@ -98,8 +98,7 @@ public class MainActivity extends AppCompatActivity implements AddPaymentDialog.
         for (Payment payment : payments) {
             total += payment.getAmount();
         }
-        totalAmountTextView.setText(String.format("%.2f", total));
-
+        totalAmountTextView.setText(String.format("₹%.2f", total));
         paymentChipGroup.removeAllViews();
 
         for (int i = 0; i < payments.size(); i++) {
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements AddPaymentDialog.
             final int index = i;
 
             Chip chip = new Chip(this);
-            chip.setText(String.format("%s - $%.2f", payment.getType(), payment.getAmount()));
+            chip.setText(String.format("%s - ₹%.2f", payment.getType(), payment.getAmount()));
             chip.setCloseIconVisible(true);
 
             chip.setOnCloseIconClickListener(v -> {
