@@ -117,7 +117,12 @@ public class MainActivity extends AppCompatActivity implements AddPaymentDialog.
             paymentChipGroup.addView(chip);
         }
 
-        saveButton.setEnabled(!payments.isEmpty());
+        String currentJson = getCurrentPaymentsJson();
+
+        boolean hasChanges = !currentJson.equals(originalPaymentsJson);
+        saveButton.setEnabled(hasChanges);
+
+
     }
 
     private String getCurrentPaymentsJson() {
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements AddPaymentDialog.
             return jsonArray.toString();
         } catch (Exception e) {
             Toast.makeText(this, "Error converting payments to JSON", Toast.LENGTH_SHORT).show();
-            return "";
+            return "[]";
         }
     }
 
